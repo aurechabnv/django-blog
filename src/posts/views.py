@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 
 from posts.models import BlogPost
 
@@ -15,3 +15,9 @@ class BlogHome(ListView):
             return queryset
 
         return queryset.filter(published=True)
+
+
+class BlogPostCreate(CreateView):
+    model = BlogPost
+    template_name = "posts/blogpost_create.html"
+    fields = ['title', 'content', ]
